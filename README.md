@@ -106,7 +106,7 @@ Add data source
 
 Add a dashboard from template
 - Move to <code>Create > Import JSON</code>
-- Upload this file : [FILE]
+- Upload this file : https://github.com/dsrvlabs/coda-performance-dashboard/blob/master/grafana-json-model.json
 
 Now, You can see your dashboard
 - <code>Dashboard > Home > Coda:BlockProducer Performance Dashboard</code>
