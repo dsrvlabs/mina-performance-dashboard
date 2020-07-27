@@ -5,6 +5,24 @@
 
 Coda Performance Dashboard is performance monitoring for Coda Protocol. It privides two functions, Block Producer Performance Dashboard and Snarker Performance Dashboard.
 
+## Plan (milestone)
+- Milestone 1 (alpha) : until July 24 ![Progress](https://progress-bar.dev/100/?title=completed)
+  - Prepare Code infrastructures (nods)
+  - Initial Prometheus and Grafana setup
+  - Show raw metrics
+  - Basic integration for internal release
+- Milestone 2 (beta) : until Aug 21
+  - Enhanced Prometheus and Grafana setup ![Progress](https://progress-bar.dev/20/?title=progress)
+  - Show user-friendly derived metrics
+  - Improve UI
+  - Advanced Integration for public release
+  - Documentation (draft)
+- Milestone 3 (MVP) : until Sep 4
+  - Adaptions based on testing
+  - Documentation (Final)
+  - Code refactoring and integration for open source
+
+
 ## Features
 - Block Producer Performance Dashboard
 - Snarker Performance Dashboard
