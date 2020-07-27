@@ -49,7 +49,7 @@ apt install docker.io
 ### Configure Prometheus
 > Save Prometheum configuration file and run it with Docker.
 
-Create work folder and save Prometheum configuration file.
+Create work folder and save the Prometheum configuration file.
 ```
 mkdir /var/prometheus-coda
 cd /var/prometheus-coda
