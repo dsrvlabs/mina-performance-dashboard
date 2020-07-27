@@ -1,9 +1,9 @@
 # Coda Performance Dashboard
 
 > This page is still under development
-> also, this repository is temporary and can be changed.
+> Also, this repository is temporary and is subject to change.
 
-Coda Performance Dashboard is performance monitoring for Coda Protocol. It privides two functions, Block Producer Performance Dashboard and Snarker Performance Dashboard.
+Coda Performance Dashboard is a performance monitoring tool for Coda Protocol. It provides two functions, collecting and visualizing Block Producers' and Snarkers' performance data.
 
 ## Plan (milestone)
 - Milestone 1 (alpha) : until July 24 ![Progress](https://progress-bar.dev/100/?title=completed)
@@ -31,32 +31,32 @@ Coda Performance Dashboard is performance monitoring for Coda Protocol. It privi
 
 ## Install Guide
 
-The Coda Performance Dashboard displays information from nodes through Prometheus and Grafana.
+The Coda Performance Dashboard displays information of nodes through Prometheus and Grafana.
 
 ### Prerequisites
 
-- Coda Protocol nodes of Block Producer and Snarker
+- Coda Protocol Block Producer and Snarker node(s)
   - Reference : https://codaprotocol.com/docs/getting-started
 
 
 ### Install Docker
-> Prometheus and Grafana provides services through Docker.
+> Prometheus and Grafana provides service through Docker.
 
 ```
 apt install docker.io
 ```
 
 ### Configure Prometheus
-> Save Prometheum configuration file and run it based on Docker.
+> Save Prometheum configuration file and run it with Docker.
 
-Create work folder and save Prometheum configuration file
+Create work folder and save Prometheum configuration file.
 ```
 mkdir /var/prometheus-coda
 cd /var/prometheus-coda
 vi /var/prometheus-coda/prometheus-coda.yml
 ```
 
-Paste the contents of the file below. At this time, change <code>NODE_IP_ADDRESS</code> accordingly.
+Paste the contents of the file below. At this time, change <code>NODE_IP_ADDRESS</code> to your own IP address.
 ```
 global:
   scrape_interval: 15s # 15s will be enough, because block of time
@@ -73,7 +73,7 @@ scrape_configs:
     metrics_path: /metrics
     scheme: http
     static_configs:
-      - targets: ['NODE_IP_ADDRESS:6060'] ## Replace IP address to your server
+      - targets: ['NODE_IP_ADDRESS:6060'] ## Replace NODE_IP_ADDRESS to IP address of your server
         labels:
           hostname: 'coda-daemon'
 ```
@@ -112,7 +112,7 @@ docker run -d --name=grafana -p 3000:3000 grafana/grafana
 
 Login to Grafana
 - Visit : <code>http://GRAFANA_IP_ADDRESS:3000</code>
-- You can login to Grafana using user `admin` and default password is also `admin`. when you connect to Grafana first time. When you login, you will see a screen to set new password for `admin`.
+- You can login to Grafana with username `admin` and default password `admin`. After you connect to Grafana for the first time, you will see a screen to set new password for your account.
 
 Add data source
 - <code>Configuration > Data Sources > Add data source > Prometheus</code>
@@ -121,10 +121,10 @@ Add data source
   - HTTP > URL : <code>http://CODA_NODE_IP_ADDRESS:19090</code>
 - Click <code>[Save & Test]</code>
 
-Add a dashboard from template
-- Move to <code>Create > Import JSON</code>
+Add a dashboard from the template
+- Go to <code>Create > Import JSON</code>
 - Upload this file : https://github.com/dsrvlabs/coda-performance-dashboard/blob/master/grafana-json-model.json
 
-Now, You can see your dashboard
+Now, you can see the dashboard
 - <code>Dashboard > Home > Coda:BlockProducer Performance Dashboard</code>
 
