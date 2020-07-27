@@ -7,13 +7,13 @@ Coda Performance Dashboard is a performance monitoring tool for Coda Protocol. I
 
 ## Plan (milestone)
 - Milestone 1 (alpha) : until July 24 ![Progress](https://progress-bar.dev/100/?title=completed)
-  - Prepare Code infrastructures (nods) [![Issue Status](https://img.shields.io/badge/closed-lightgrey.svg)](https://github.com/dsrvlabs/coda-performance-dashboard)
+  - Prepare Code infrastructure (node) [![Issue Status](https://img.shields.io/badge/closed-lightgrey.svg)](https://github.com/dsrvlabs/coda-performance-dashboard)
   - Initial Prometheus and Grafana setup [![Issue Status](https://img.shields.io/badge/closed-lightgrey.svg)](https://github.com/dsrvlabs/coda-performance-dashboard)
-  - Show raw metrics [![Issue Status](https://img.shields.io/badge/closed-lightgrey.svg)](https://github.com/dsrvlabs/coda-performance-dashboard)
+  - Showing raw metrics [![Issue Status](https://img.shields.io/badge/closed-lightgrey.svg)](https://github.com/dsrvlabs/coda-performance-dashboard)
   - Basic integration for internal release [![Issue Status](https://img.shields.io/badge/closed-lightgrey.svg)](https://github.com/dsrvlabs/coda-performance-dashboard)
 - Milestone 2 (beta) : until Aug 21
   - Enhanced Prometheus and Grafana setup ![Progress](https://progress-bar.dev/20/?title=progress)
-  - Show user-friendly derived metrics
+  - Showing user-friendly derived metrics
   - Improve UI
   - Advanced Integration for public release
   - Documentation (draft)
