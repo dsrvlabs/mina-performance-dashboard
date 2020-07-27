@@ -1,6 +1,6 @@
 # Coda Performance Dashboard
 
-> This page is still under development
+> This page is still under development. 
 > Also, this repository is temporary and is subject to change.
 
 Coda Performance Dashboard is a performance monitoring tool for Coda Protocol. It provides two functions, collecting and visualizing Block Producers' and Snarkers' performance data.
