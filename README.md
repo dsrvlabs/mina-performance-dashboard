@@ -9,9 +9,7 @@ Coda Performance Dashboard is performance monitoring for Coda Protocol. It privi
 - Block Producer Performance Dashboard
 - Snarker Performance Dashboard
 
-
-![스크린샷 2020-07-24 오후 8.08.09.png](/Users/jongkwang/Desktop/스크린샷 2020-07-24 오후 8.08.09.png)
-
+<img width="1495" alt="Dashboard" src="https://user-images.githubusercontent.com/897510/88521994-b7454800-d030-11ea-9307-f7d0010f9727.png">
 
 ## Install Guide
 
@@ -75,7 +73,8 @@ docker run \
 ```
 
 Check Prometheus : <code>http://PROMETHEUS_IP_ADDRESS:9090</code>
-[Image]
+<img width="982" alt="prometheus" src="https://user-images.githubusercontent.com/897510/88522011-bf9d8300-d030-11ea-8004-d9cef424469f.png">
+
 
 ### Start Grafana
 
