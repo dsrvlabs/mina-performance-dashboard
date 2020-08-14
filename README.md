@@ -51,9 +51,7 @@ apt install docker.io
 
 Create work folder and save the Prometheum configuration file.
 ```
-mkdir /var/prometheus-coda
-cd /var/prometheus-coda
-vi /var/prometheus-coda/prometheus-coda.yml
+vi /tmp/prometheus-coda.yml
 ```
 
 Paste the contents of the file below. At this time, change <code>NODE_IP_ADDRESS</code> to your own IP address.
@@ -76,6 +74,9 @@ scrape_configs:
       - targets: ['NODE_IP_ADDRESS:6060'] ## Replace NODE_IP_ADDRESS to IP address of your server
         labels:
           hostname: 'coda-daemon'
+      - job_name: 'node_exporter'
+        static_configs:
+          - targets: ['NODE_IP_ADDRESS:9100']
 ```
 
 > You can also get this file(prometheus-coda.yml) here.
@@ -84,10 +85,10 @@ scrape_configs:
 Run Prometheus through Docker.
 ```
 docker run \
-	-d --name=prometheus-coda \
-	-p 9090:9090 \
-	-v /var/prometheus-coda:/prometheus \
-	prom/prometheus --config.file=/prometheus/prometheus-coda.yml
+    -d --name=prometheus-coda \
+    -p 9090:9090 \
+    -v /tmp/prometheus-coda.yml:/etc/prometheus/prometheus.yml \
+    prom/prometheus
 ```
 
 Check Prometheus : <code>http://PROMETHEUS_IP_ADDRESS:9090</code>
@@ -104,7 +105,8 @@ docker run -d --name=grafana -p 3000:3000 grafana/grafana
 
 ### Firewall Setting
 - CODA node
-  - Open inbound 19090 port from PROMETHEUM Server
+  - Open inbound 6060(Coda Metric) port from PROMETHEUM Server
+  - Open inbound 9100(node_exporter) port from PROMETHEUM Server
 - Prometheum and Grafana Server
   - Open inbound 3000(Grafana) and 9090(Prometheum) port
 
@@ -118,7 +120,7 @@ Add data source
 - <code>Configuration > Data Sources > Add data source > Prometheus</code>
 - Type it below
   - Name : <code>Prometheus-Coda</code>
-  - HTTP > URL : <code>http://CODA_NODE_IP_ADDRESS:19090</code>
+  - HTTP > URL : <code>http://CODA_NODE_IP_ADDRESS:9090</code>
 - Click <code>[Save & Test]</code>
 
 Add a dashboard from the template
