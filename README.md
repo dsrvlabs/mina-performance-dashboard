@@ -12,11 +12,11 @@ Coda Performance Dashboard is a performance monitoring tool for Coda Protocol. I
   - Showing raw metrics [![Issue Status](https://img.shields.io/badge/closed-lightgrey.svg)](https://github.com/dsrvlabs/coda-performance-dashboard)
   - Basic integration for internal release [![Issue Status](https://img.shields.io/badge/closed-lightgrey.svg)](https://github.com/dsrvlabs/coda-performance-dashboard)
 - Milestone 2 (beta) : until Aug 21
-  - Enhanced Prometheus and Grafana setup ![Progress](https://progress-bar.dev/20/?title=progress)
-  - Showing user-friendly derived metrics
-  - Improve UI
-  - Advanced Integration for public release
-  - Documentation (draft)
+  - Enhanced Prometheus and Grafana setup [#2](https://github.com/dsrvlabs/coda-performance-dashboard/issues/2) ![Progress](https://progress-bar.dev/20/?title=progress) 
+  - Showing user-friendly derived metrics [#3](https://github.com/dsrvlabs/coda-performance-dashboard/issues/3)
+  - Improve UI [#4](https://github.com/dsrvlabs/coda-performance-dashboard/issues/4)
+  - Advanced Integration for public release [#5](https://github.com/dsrvlabs/coda-performance-dashboard/issues/5)
+  - Documentation (draft) [#6](https://github.com/dsrvlabs/coda-performance-dashboard/issues/6)
 - Milestone 3 (MVP) : until Sep 4
   - Adaptions based on testing
   - Documentation (Final)
