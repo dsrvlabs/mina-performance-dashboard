@@ -13,9 +13,6 @@ scrape_configs:
     metrics_path: /metrics
     scheme: http
     static_configs:
-      - targets: ['<NODE_IP_ADDRESS>:6060'] ## Replace NODE_IP_ADDRESS to IP address of your server
+      - targets: ['<NODE_IP_ADDRESS>:6060','<NODE_IP_ADDRESS>:9100'] ## Replace NODE_IP_ADDRESS to IP address of your server
         labels:
           hostname: 'coda-daemon'
-  - job_name: 'node_exporter'
-    static_configs:
-      - targets: ['<NODE_IP_ADDRESS>:9100']
