@@ -97,7 +97,12 @@ Check Prometheus : <code>http://PROMETHEUS_IP_ADDRESS:9090</code>
 Run Grafana through Docker
 
 ```
-docker run -d --name=grafana -p 3000:3000 grafana/grafana
+docker run \
+-d \
+-p 3000:3000 \
+--name=grafana \
+-e "GF_INSTALL_PLUGINS=fifemon-graphql-datasource" \
+grafana/grafana
 ```
 
 ### Firewall Setting
