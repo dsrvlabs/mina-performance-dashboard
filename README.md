@@ -1,55 +1,52 @@
 # Coda Performance Dashboard
 
-> This page is still under development. 
-> Also, this repository is temporary and is subject to change.
-
 Coda Performance Dashboard is a performance monitoring tool for Coda Protocol. It provides two functions, collecting and visualizing Block Producers' and Snarkers' performance data.
 
-## Plan (milestone)
-- Milestone 1 (alpha) : until July 24 ![Progress](https://progress-bar.dev/100/?title=completed)
-  - Prepare Code infrastructure (node) [![Issue Status](https://img.shields.io/badge/closed-lightgrey.svg)](https://github.com/dsrvlabs/coda-performance-dashboard)
-  - Initial Prometheus and Grafana setup [![Issue Status](https://img.shields.io/badge/closed-lightgrey.svg)](https://github.com/dsrvlabs/coda-performance-dashboard)
-  - Showing raw metrics [![Issue Status](https://img.shields.io/badge/closed-lightgrey.svg)](https://github.com/dsrvlabs/coda-performance-dashboard)
-  - Basic integration for internal release [![Issue Status](https://img.shields.io/badge/closed-lightgrey.svg)](https://github.com/dsrvlabs/coda-performance-dashboard)
-- Milestone 2 (beta) : until Aug 21
-  - Enhanced Prometheus and Grafana setup [#2](https://github.com/dsrvlabs/coda-performance-dashboard/issues/2) ![Progress](https://progress-bar.dev/20/?title=progress) 
-  - Showing user-friendly derived metrics [#3](https://github.com/dsrvlabs/coda-performance-dashboard/issues/3)
-  - Improve UI [#4](https://github.com/dsrvlabs/coda-performance-dashboard/issues/4)
-  - Advanced Integration for public release [#5](https://github.com/dsrvlabs/coda-performance-dashboard/issues/5)
-  - Documentation (draft) [#6](https://github.com/dsrvlabs/coda-performance-dashboard/issues/6)
-- Milestone 3 (MVP) : until Sep 4
-  - Adaptions based on testing
-  - Documentation (Final)
-  - Code refactoring and integration for open source
 
-
-## Features
+## 1. Features
 - Block Producer Performance Dashboard
 - Snarker Performance Dashboard
 
-<img width="1495" alt="Dashboard" src="https://user-images.githubusercontent.com/897510/88521994-b7454800-d030-11ea-9307-f7d0010f9727.png">
+### 1-1. Screenshot
+![screenshot_dark_1](https://user-images.githubusercontent.com/897510/92995078-f1b06900-f53a-11ea-962d-8b78c9c6de88.png)
+![screenshot_dark_2](https://user-images.githubusercontent.com/897510/92995075-efe6a580-f53a-11ea-896d-13e91c0ee355.png)
+![screenshot_light_1](https://user-images.githubusercontent.com/897510/92995077-f117d280-f53a-11ea-99d6-a37754804d5f.png)
+![screenshot_light_2](https://user-images.githubusercontent.com/897510/92995071-ec531e80-f53a-11ea-979f-9cedb2146f39.png)
 
-## Install Guide
+## 2. Install Guide
 
 The Coda Performance Dashboard displays information of nodes through Prometheus and Grafana.
+Also, server information is collected using node_exporter.
 
-### Prerequisites
+You have to prepare 2 servers. Of course, you can install everything on one server. But it is not recommended.
 
-- Coda Protocol Block Producer and Snarker node(s)
-  - Reference : https://codaprotocol.com/docs/getting-started
+- Coda Node
+  - Install Coda node : https://codaprotocol.com/docs/getting-started
+  - Install node_exporter : https://github.com/prometheus/node_exporter#using-docker
+- Prometheum and Grafana Server
+  - Install Prometheus : <code>2.2. Install Prometheus</code>
+  - Install Grafana : <code>2.3. Install Grafana</code>
 
+### 2.1. Preparations
 
-### Install Docker
+#### 2.1.1. Install Docker
 > Prometheus and Grafana provides service through Docker.
-
 ```
 apt install docker.io
 ```
 
-### Configure Prometheus
-> Save Prometheum configuration file and run it with Docker.
+### 2.1.2. Firewall Setting
+- CODA node
+  - Open inbound <code>6060</code>(Coda Metric) port from PROMETHEUM Server
+  - Open inbound <code>9100</code>(node_exporter) port from PROMETHEUM Server
+- Prometheum and Grafana Server
+  - Open inbound <code>3000</code>(Grafana) and <code>9090</code>(Prometheum) port
 
-Create work folder and save the Prometheum configuration file.
+
+### 2.2. Install Prometheus
+
+#### 2.2.2. Configure Prometheus
+Create the Prometheum configuration file.
 ```
 vi /tmp/prometheus-coda.yml
 ```
@@ -76,10 +73,10 @@ scrape_configs:
           hostname: 'coda-daemon'
 ```
 
-> You can also get this file(prometheus-coda.yml) here.
+> You can also get this file [prometheus-coda.yml](https://github.com/dsrvlabs/coda-performance-dashboard/blob/master/prometheus-coda.yml) here.
 
+#### 2.2.3. Run Prometheus through Docker
 
-Run Prometheus through Docker.
 ```
 docker run \
     -d --name=prometheus-coda \
@@ -91,8 +88,9 @@ docker run \
 Check Prometheus : <code>http://PROMETHEUS_IP_ADDRESS:9090</code>
 <img width="982" alt="prometheus" src="https://user-images.githubusercontent.com/897510/88522011-bf9d8300-d030-11ea-8004-d9cef424469f.png">
 
+## 2.3. Install Grafana
 
-### Start Grafana
+### 2.3.1 Install and run Grafana
 
 Run Grafana through Docker
 
@@ -105,18 +103,16 @@ docker run \
 grafana/grafana
 ```
 
-### Firewall Setting
-- CODA node
-  - Open inbound 6060(Coda Metric) port from PROMETHEUM Server
-  - Open inbound 9100(node_exporter) port from PROMETHEUM Server
-- Prometheum and Grafana Server
-  - Open inbound 3000(Grafana) and 9090(Prometheum) port
+> Add plugin(fifemon-graphql-datasource) : <code>-e "GF_INSTALL_PLUGINS=fifemon-graphql-datasource"</code>  
+it makes GraphQL data available to Grafana.
 
-### Configure Grafana
+
+### 2.3.1 Configure Grafana
 
 Login to Grafana
 - Visit : <code>http://GRAFANA_IP_ADDRESS:3000</code>
-- You can login to Grafana with username `admin` and default password `admin`. After you connect to Grafana for the first time, you will see a screen to set new password for your account.
+
+> You can login to Grafana with username `admin` and default password `admin`. After you connect to Grafana for the first time, you will see a screen to set new password for your account.
 
 Add data source
 - <code>Configuration > Data Sources > Add data source > Prometheus</code>
@@ -124,6 +120,8 @@ Add data source
   - Name : <code>Prometheus-Coda</code>
   - HTTP > URL : <code>http://PROMETHEUS_IP_ADDRESS:9090</code>
 - Click <code>[Save & Test]</code>
+
+![screenshot_light_3](https://user-images.githubusercontent.com/897510/92995787-92a22280-f541-11ea-8210-9eaddf2510d3.png)
 
 Add a dashboard from template
 - Move to <code>Create > Import JSON</code>
@@ -133,6 +131,15 @@ Add a dashboard from template
     > Upload this file : https://github.com/dsrvlabs/coda-performance-dashboard/blob/master/grafana-json-model.json
 - Click : `Load` button
 
+![screenshot_light_4](https://user-images.githubusercontent.com/897510/92995828-da28ae80-f541-11ea-8a2f-0d8c60343f13.png)
+
 Now, you can see the dashboard
 - <code>Dashboard > Home > Coda:BlockProducer Performance Dashboard</code>
 
+## 3. Reference
+- Coda Protocol : https://codaprotocol.com/docs/getting-started
+- Prometheus : https://prometheus.io/docs/prometheus/latest/getting_started/
+- Prometheus node_exporter : https://github.com/prometheus/node_exporter
+- Grafana : https://grafana.com/docs/grafana/latest/
+- Grafana Dashbaord : [1 Node Exporter for Prometheus Dashboard EN](https://grafana.com/grafana/dashboards/11074)
+- Grafana Dahsboard : [Coda: Block Producer Performance Dashboard](https://grafana.com/grafana/dashboards/12840)
