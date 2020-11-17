@@ -1,6 +1,6 @@
-# Coda Performance Dashboard
+# Mina Performance Dashboard
 
-Coda Performance Dashboard is a performance monitoring tool for Coda Protocol. It provides two functions, collecting and visualizing Block Producers' and Snarkers' performance data.
+Mina Performance Dashboard is a performance monitoring tool for Mina Protocol. It provides two functions, collecting and visualizing Block Producers' and Snarkers' performance data.
 
 
 ## 1. Features
@@ -15,13 +15,13 @@ Coda Performance Dashboard is a performance monitoring tool for Coda Protocol. I
 
 ## 2. Install Guide
 
-The Coda Performance Dashboard displays information of nodes through Prometheus and Grafana.
+The Mina Performance Dashboard displays information of nodes through Prometheus and Grafana.
 Also, server information is collected using node_exporter.
 
 You have to prepare 2 servers. Of course, you can install everything on one server. But it is not recommended.
 
-- Coda Node
-  - Install Coda node : https://codaprotocol.com/docs/getting-started
+- Mina Node
+  - Install Mina node : https://minaprotocol.com/docs/getting-started
   - Install node_exporter : https://github.com/prometheus/node_exporter#using-docker
 - Prometheum and Grafana Server
   - Install Prometheus : <code>2.2. Install Prometheus</code>
@@ -37,7 +37,7 @@ apt install docker.io
 
 ### 2.1.2. Firewall Setting
 - CODA node
-  - Open inbound <code>6060</code>(Coda Metric) port from PROMETHEUM Server
+  - Open inbound <code>6060</code>(Mina Metric) port from PROMETHEUM Server
   - Open inbound <code>9100</code>(node_exporter) port from PROMETHEUM Server
 - Prometheum and Grafana Server
   - Open inbound <code>3000</code>(Grafana) and <code>9090</code>(Prometheum) port
@@ -48,7 +48,7 @@ apt install docker.io
 #### 2.2.2. Configure Prometheus
 Create the Prometheum configuration file.
 ```
-vi /tmp/prometheus-coda.yml
+vi /tmp/prometheus-mina.yml
 ```
 
 Paste the contents of the file below. At this time, change <code>NODE_IP_ADDRESS</code> to your own IP address.
@@ -64,24 +64,24 @@ alerting:
     scheme: http
     timeout: 5s
 scrape_configs:
-  - job_name: 'coda-testnet'
+  - job_name: 'mina-testnet'
     metrics_path: /metrics
     scheme: http
     static_configs:
       - targets: ['NODE_IP_ADDRESS:6060','NODE_IP_ADDRESS:9100'] ## Replace NODE_IP_ADDRESS to IP address of your server
         labels:
-          hostname: 'coda-daemon'
+          hostname: 'mina-daemon'
 ```
 
-> You can also get this file [prometheus-coda.yml](https://github.com/dsrvlabs/coda-performance-dashboard/blob/master/prometheus-coda.yml) here.
+> You can also get this file [prometheus-mina.yml](https://github.com/dsrvlabs/mina-performance-dashboard/blob/master/prometheus-mina.yml) here.
 
 #### 2.2.3. Run Prometheus through Docker
 
 ```
 docker run \
-    -d --name=prometheus-coda \
+    -d --name=prometheus-mina \
     -p 9090:9090 \
-    -v /tmp/prometheus-coda.yml:/etc/prometheus/prometheus.yml \
+    -v /tmp/prometheus-mina.yml:/etc/prometheus/prometheus.yml \
     prom/prometheus
 ```
 
@@ -117,7 +117,7 @@ Login to Grafana
 Add data source
 - <code>Configuration > Data Sources > Add data source > Prometheus</code>
 - Type it below
-  - Name : <code>Prometheus-Coda</code>
+  - Name : <code>Prometheus-Mina</code>
   - HTTP > URL : <code>http://PROMETHEUS_IP_ADDRESS:9090</code>
 - Click <code>[Save & Test]</code>
 
@@ -128,18 +128,18 @@ Add a dashboard from template
 - Import via grafana.com : 12840
   > Grafana Dashboard URL : https://grafana.com/grafana/dashboards/12840
   - Otherwise Upload a json file as below.
-    > Upload this file : https://github.com/dsrvlabs/coda-performance-dashboard/blob/master/grafana-json-model.json
+    > Upload this file : https://github.com/dsrvlabs/mina-performance-dashboard/blob/master/grafana-json-model.json
 - Click : `Load` button
 
 ![screenshot_light_4](https://user-images.githubusercontent.com/897510/92995828-da28ae80-f541-11ea-8a2f-0d8c60343f13.png)
 
 Now, you can see the dashboard
-- <code>Dashboard > Home > Coda:BlockProducer Performance Dashboard</code>
+- <code>Dashboard > Home > Mina:BlockProducer Performance Dashboard</code>
 
 ## 3. Reference
-- Coda Protocol : https://codaprotocol.com/docs/getting-started
+- Mina Protocol : https://minaprotocol.com/docs/getting-started
 - Prometheus : https://prometheus.io/docs/prometheus/latest/getting_started/
 - Prometheus node_exporter : https://github.com/prometheus/node_exporter
 - Grafana : https://grafana.com/docs/grafana/latest/
 - Grafana Dashbaord : [1 Node Exporter for Prometheus Dashboard EN](https://grafana.com/grafana/dashboards/11074)
-- Grafana Dahsboard : [Coda: Block Producer Performance Dashboard](https://grafana.com/grafana/dashboards/12840)
+- Grafana Dahsboard : [Mina: Block Producer Performance Dashboard](https://grafana.com/grafana/dashboards/12840)
