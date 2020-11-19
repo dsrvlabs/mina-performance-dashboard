@@ -36,7 +36,7 @@ apt install docker.io
 ```
 
 ### 2.1.2. Firewall Setting
-- CODA node
+- Mina node
   - Open inbound <code>6060</code>(Mina Metric) port from PROMETHEUM Server
   - Open inbound <code>9100</code>(node_exporter) port from PROMETHEUM Server
 - Prometheum and Grafana Server
