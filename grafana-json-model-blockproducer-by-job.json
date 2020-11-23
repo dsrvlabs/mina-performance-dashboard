@@ -16,8 +16,8 @@
   "editable": true,
   "gnetId": 12840,
   "graphTooltip": 0,
-  "id": 73,
-  "iteration": 1606128727796,
+  "id": 77,
+  "iteration": 1606135429740,
   "links": [],
   "panels": [
     {
@@ -1528,7 +1528,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "node_memory_MemTotal_bytes{instance=~\"$node\"}",
+          "expr": "node_memory_MemTotal_bytes{job=~\"$job\",instance=~\"$node\"}",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -1539,7 +1539,7 @@
           "step": 4
         },
         {
-          "expr": "node_memory_MemTotal_bytes{instance=~\"$node\"} - node_memory_MemAvailable_bytes{instance=~\"$node\"}",
+          "expr": "node_memory_MemTotal_bytes{job=~\"$job\",instance=~\"$node\"} - node_memory_MemAvailable_bytes{job=~\"$job\",instance=~\"$node\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -1549,7 +1549,7 @@
           "step": 4
         },
         {
-          "expr": "node_memory_MemAvailable_bytes{instance=~\"$node\"}",
+          "expr": "node_memory_MemAvailable_bytes{job=~\"$job\",instance=~\"$node\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -1559,14 +1559,14 @@
           "step": 4
         },
         {
-          "expr": "Coda_Runtime_jemalloc_allocated_bytes",
+          "expr": "Coda_Runtime_jemalloc_allocated_bytes{job=~\"$job\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "Coda Used",
           "refId": "C"
         },
         {
-          "expr": "(1 - (node_memory_MemAvailable_bytes{instance=~\"$node\"} / (node_memory_MemTotal_bytes{instance=~\"$node\"})))* 100",
+          "expr": "(1 - (node_memory_MemAvailable_bytes{job=~\"$job\",instance=~\"$node\"} / (node_memory_MemTotal_bytes{job=~\"$job\",instance=~\"$node\"})))* 100",
           "format": "time_series",
           "hide": false,
           "interval": "1m",
@@ -4336,7 +4336,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "node_memory_MemTotal_bytes{instance=~\"$node\"}",
+          "expr": "node_memory_MemTotal_bytes{job=~\"$job\",instance=~\"$node\"}",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -4347,7 +4347,7 @@
           "step": 4
         },
         {
-          "expr": "node_memory_MemTotal_bytes{instance=~\"$node\"} - node_memory_MemAvailable_bytes{instance=~\"$node\"}",
+          "expr": "node_memory_MemTotal_bytes{job=~\"$job\",instance=~\"$node\"} - node_memory_MemAvailable_bytes{job=~\"$job\",instance=~\"$node\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -4357,7 +4357,7 @@
           "step": 4
         },
         {
-          "expr": "node_memory_MemAvailable_bytes{instance=~\"$node\"}",
+          "expr": "node_memory_MemAvailable_bytes{job=~\"$job\",instance=~\"$node\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -4367,14 +4367,14 @@
           "step": 4
         },
         {
-          "expr": "Coda_Runtime_jemalloc_allocated_bytes",
+          "expr": "Coda_Runtime_jemalloc_allocated_bytes{job=~\"$job\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "Coda Used",
           "refId": "C"
         },
         {
-          "expr": "(1 - (node_memory_MemAvailable_bytes{instance=~\"$node\"} / (node_memory_MemTotal_bytes{instance=~\"$node\"})))* 100",
+          "expr": "(1 - (node_memory_MemAvailable_bytes{job=~\"$job\",instance=~\"$node\"} / (node_memory_MemTotal_bytes{job=~\"$job\",instance=~\"$node\"})))* 100",
           "format": "time_series",
           "hide": false,
           "interval": "1m",
@@ -8240,8 +8240,8 @@
       {
         "current": {
           "selected": false,
-          "text": "YOUR_JOB_NAME_HERE",
-          "value": "YOUR_JOB_NAME_HERE"
+          "text": "INPUT_JOB_NAME_HERE",
+          "value": "INPUT_JOB_NAME_HERE"
         },
         "hide": 2,
         "label": "JOB",
@@ -8249,11 +8249,11 @@
         "options": [
           {
             "selected": true,
-            "text": "YOUR_JOB_NAME_HERE",
-            "value": "YOUR_JOB_NAME_HERE"
+            "text": "INPUT_JOB_NAME_HERE",
+            "value": "INPUT_JOB_NAME_HERE"
           }
         ],
-        "query": "YOUR_JOB_NAME_HERE",
+        "query": "INPUT_JOB_NAME_HERE",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -8407,7 +8407,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "Mina: Block Producer Performance Dashboard by job",
+  "title": "Mina: Block Producer Performance Dashboard - byJob",
   "uid": "Ql5IWe221",
-  "version": 11
+  "version": 2
 }
