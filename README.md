@@ -146,3 +146,4 @@ Now, you can see the dashboard
 - Grafana : https://grafana.com/docs/grafana/latest/
 - Grafana Dashbaord : [1 Node Exporter for Prometheus Dashboard EN](https://grafana.com/grafana/dashboards/11074)
 - Grafana Dahsboard : [Mina: Block Producer Performance Dashboard](https://grafana.com/grafana/dashboards/12840)
+- Automated Alerts sent to Telegram bot : https://gist.github.com/dl6nm/c312acbc6fddf1a56d749e045f040ca3
