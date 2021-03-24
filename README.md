@@ -136,7 +136,10 @@ Add a dashboard from template
 Now, you can see the dashboard
 - <code>Dashboard > Home > Mina:BlockProducer Performance Dashboard</code>
 
-## 3. Reference
+## 3. Automated Alerts sent to Telegram bot
+- Please refer to this link : https://gist.github.com/dl6nm/c312acbc6fddf1a56d749e045f040ca3
+
+## 4. Reference
 - Mina Protocol : https://minaprotocol.com/docs/getting-started
 - Prometheus : https://prometheus.io/docs/prometheus/latest/getting_started/
 - Prometheus node_exporter : https://github.com/prometheus/node_exporter
